@@ -44,7 +44,7 @@ A lightweight, native-feeling macOS desktop app for viewing Markdown files in ta
 ## Getting started
 
 ```bash
-git clone https://github.com/<your-username>/folio-md.git
+git clone git@github.com:selmanbaskaya/folio-md.git
 cd folio-md
 npm install
 npm start
