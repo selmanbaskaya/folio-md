@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' md-asset: data: https:; font-src 'self'"
+    />
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.min.css" media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github-dark.min.css" media="(prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="toolbar-group">
+        <button id="btn-sidebar" class="tool-button" title="Toggle Sidebar (⌃⌘S)" aria-label="Toggle Sidebar">
+          <svg viewBox="0 0 20 20"><rect x="2.5" y="3.5" width="15" height="13" rx="2.5" /><path d="M7.5 3.5v13" /></svg>
+        </button>
+      </div>
+      <div class="toolbar-group">
+        <button id="btn-open" class="tool-button" title="Open File (⌘O)" aria-label="Open File">
+          <svg viewBox="0 0 20 20"><path d="M11.5 2.5h-6a1.5 1.5 0 0 0-1.5 1.5v12a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 16 16V7z" /><path d="M11.5 2.5V7H16" /><path d="M10 9.5v5M7.5 12h5" /></svg>
+        </button>
+        <button id="btn-folder" class="tool-button" title="Open Folder (⇧⌘O)" aria-label="Open Folder">
+          <svg viewBox="0 0 20 20"><path d="M2.5 6V15a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V7.5A1.5 1.5 0 0 0 16 6H9.5L8 4H4a1.5 1.5 0 0 0-1.5 1.5z" /></svg>
+        </button>
+        <button id="btn-reload" class="tool-button" title="Reload (⌘R)" aria-label="Reload">
+          <svg viewBox="0 0 20 20"><path d="M16 10a6 6 0 1 1-1.8-4.3" /><path d="M16 3.5v3.5h-3.5" /></svg>
+        </button>
+      </div>
+      <div class="toolbar-title" id="toolbar-title"></div>
+      <div class="segmented" role="group" aria-label="View mode">
+        <button data-view="preview" title="Preview only">Preview</button>
+        <button data-view="split" title="Source and preview (⌥⌘U)">Split</button>
+      </div>
+      <button id="btn-theme" class="tool-button theme-button" title="Appearance" aria-label="Appearance" data-theme="system">
+        <svg class="icon-system" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.5" /><path d="M10 3.5a6.5 6.5 0 0 1 0 13z" fill="currentColor" /></svg>
+        <svg class="icon-light" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5" /><path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7l1.3 1.3M14 14l1.3 1.3M4.7 15.3 6 14M14 6l1.3-1.3" /></svg>
+        <svg class="icon-dark" viewBox="0 0 20 20"><path d="M16.2 12.4A6.5 6.5 0 0 1 7.6 3.8a6.5 6.5 0 1 0 8.6 8.6z" /></svg>
+      </button>
+    </header>
+
+    <nav class="tabbar" id="tabbar" role="tablist" hidden></nav>
+
+    <div class="workspace">
+      <aside class="sidebar" id="sidebar" hidden>
+        <div class="sidebar-title" id="sidebar-title"></div>
+        <ul class="file-list" id="file-list"></ul>
+      </aside>
+
+      <main class="content" id="content">
+        <div class="empty-state" id="empty-state">
+          <svg viewBox="0 0 20 20" class="empty-icon"><path d="M11.5 2.5h-6a1.5 1.5 0 0 0-1.5 1.5v12a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 16 16V7z" /><path d="M11.5 2.5V7H16" /><path d="M7 11.5v3l1.5-1.5 1.5 1.5v-3M11.5 11.5v3m0 0 1.5-1.5m-1.5 1.5L10 13" /></svg>
+          <h1>No Document Open</h1>
+          <p>Drop Markdown or PNG files here, or open one to get started.</p>
+          <button id="btn-empty-open" class="push-button">Open File…</button>
+        </div>
+      </main>
+    </div>
+
+    <footer class="statusbar" id="statusbar" hidden>
+      <span id="status-path" class="status-path" title="Reveal in Finder"></span>
+    </footer>
+
+    <div class="drop-overlay" id="drop-overlay" hidden>
+      <div class="drop-target">Drop to open</div>
+    </div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer" hidden>
+      <button class="lightbox-close" id="lightbox-close" title="Close (Esc)" aria-label="Close">×</button>
+    </div>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "folio-md",
+  "productName": "Folio MD",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A native-feeling macOS desktop app for viewing Markdown files in tabs.",
+  "type": "module",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron ."
+  },
+  "dependencies": {
+    "highlight.js": "^11.12.0",
+    "markdown-it": "^15.0.2",
+    "sanitize-html": "^2.17.5"
+  },
+  "devDependencies": {
+    "electron": "41.7.1"
+  }
+}
